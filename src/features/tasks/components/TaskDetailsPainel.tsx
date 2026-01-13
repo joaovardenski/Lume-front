@@ -2,7 +2,7 @@ import { X, Trash } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Task } from "../types/TaskTypes";
-import { formatDueDate } from "../utils/DateUtils";
+import { formatDateTime } from "../utils/DateUtils";
 
 interface Props {
   task: Task;
@@ -108,7 +108,7 @@ export default function TaskDetailsPanel({
           </button>
 
           <div className="flex items-center justify-between text-gray-400 text-sm">
-            <p>Created at: {formatDueDate(task.created_at)}</p>
+            <p>Created at: {formatDateTime(task.created_at)}</p>
 
             <button
               onClick={() => onDeleteTask(task.id)}
