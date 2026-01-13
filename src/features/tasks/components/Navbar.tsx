@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../authentication/contexts/AuthContext";
 import { HomeContext } from "../contexts/HomeContext";
 import { NavItem } from "./NavItem";
-import lumeLogo from "../../../assets/LumeTitle.png";
+import lumeLogo from "../../../assets/lumeTitle.png";
 import { Balloon, Star, CalendarRange, ListTodo, LogOut } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
