@@ -3,7 +3,7 @@ import { HomeContext } from "../contexts/HomeContext";
 import axiosPrivate from "../../../api/axiosPrivate";
 import { getApiErrorMessage } from "../../shared/utils/getApiErrorMessage";
 import type { Task } from "../types/TaskTypes";
-import { getTodayISODate } from "../utils/DateUtils";
+import { getTodayISODate, normalizeDate } from "../utils/DateUtils";
 import toast from "react-hot-toast";
 
 export default function useTasks() {
@@ -37,9 +37,10 @@ export default function useTasks() {
         return tasks.filter((t) => !!t.due_date);
 
       case "my day":
-        return tasks.filter(
-          (t) => t.due_date === getTodayISODate()
-        );
+        return tasks.filter((t) => {
+          if (!t.due_date) return false;
+          return normalizeDate(t.due_date) === getTodayISODate();
+        });
 
       default:
         return tasks;

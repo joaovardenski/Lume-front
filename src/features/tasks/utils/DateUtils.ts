@@ -1,18 +1,23 @@
 export function formatDueDate(dateString: string) {
   if (!dateString) return null;
 
+  // Normaliza qualquer formato para YYYY-MM-DD
+  const normalized = normalizeDate(dateString);
+
+  if (!normalized) return null;
+
   const today = getTodayISODate();
 
   const tomorrow = (() => {
     const d = new Date();
     d.setDate(d.getDate() + 1);
-    return d.toISOString().split("T")[0];
+    return getISODate(d);
   })();
 
-  if (dateString === today) return "Today";
-  if (dateString === tomorrow) return "Tomorrow";
+  if (normalized === today) return "Today";
+  if (normalized === tomorrow) return "Tomorrow";
 
-  const [year, month, day] = dateString.split("-");
+  const [year, month, day] = normalized.split("-");
 
   return new Date(
     Number(year),
@@ -24,6 +29,26 @@ export function formatDueDate(dateString: string) {
   });
 }
 
+export function normalizeDate(value: string): string | null {
+  // Já está no formato correto
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    return value;
+  }
+
+  // ISO / timestamp
+  const date = new Date(value);
+
+  if (isNaN(date.getTime())) return null;
+
+  return getISODate(date);
+}
+
+export function getISODate(date: Date): string {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
 
 export function getTodayISODate(): string {
   const now = new Date();
