@@ -10,9 +10,11 @@ export default function ForgotPassword() {
     email: "",
   });
   const [errors, setErrors] = useState<{ email?: string }>({});
+  const [isSubmiting, setIsSubmiting] = useState(false);
 
   const handleForgotPassword = (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmiting(true);
 
     const validationErrors = validateForgotPasswordForm(formData);
 
@@ -22,6 +24,7 @@ export default function ForgotPassword() {
     }
 
     setErrors({});
+    setIsSubmiting(false);
     alert("Password reset link sent to your email!");
   };
 
@@ -48,6 +51,7 @@ export default function ForgotPassword() {
         <SubmitAuthButton
           title="Forgot Password"
           onClick={handleForgotPassword}
+          isSubmiting={isSubmiting}
         />
       </form>
     </AuthContainer>

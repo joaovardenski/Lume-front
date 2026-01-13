@@ -16,9 +16,11 @@ export default function RecoverPassword() {
     password?: string;
     confirmPassword?: string;
   }>({});
+  const [isSubmiting, setIsSubmiting] = useState(false);
 
   const handleRecoverPassword = (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmiting(true);
 
     const errors = validateResetPasswordForm(formData);
     if (Object.keys(errors).length > 0) {
@@ -35,6 +37,7 @@ export default function RecoverPassword() {
     }
 
     setError({});
+    setIsSubmiting(false);
     alert("Password recovered successfully!");
   };
 
@@ -79,6 +82,7 @@ export default function RecoverPassword() {
         <SubmitAuthButton
           title="Recover Password"
           onClick={handleRecoverPassword}
+          isSubmiting={isSubmiting}
         />
       </form>
     </AuthContainer>
