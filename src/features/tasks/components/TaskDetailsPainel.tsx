@@ -11,7 +11,7 @@ interface Props {
     id: number,
     title: string,
     description: string,
-    dueDate: string,
+    dueDate: string | null,
   ) => Promise<void>;
   onDeleteTask: (id: number) => Promise<void>;
 }
@@ -24,7 +24,7 @@ export default function TaskDetailsPanel({
 }: Props) {
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description ?? "");
-  const [dueDate, setDueDate] = useState(task.due_date ?? "");
+  const [dueDate, setDueDate] = useState(task.due_date ?? null);
 
   function handleSave() {
     if (!title.trim() || title.trim().length < 2) return;

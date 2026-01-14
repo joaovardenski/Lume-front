@@ -115,7 +115,7 @@ export default function useTasks() {
     id: number,
     title: string,
     description: string,
-    due_date: string
+    due_date: string | null
   ) {
     const previousTasks = tasks;
 
