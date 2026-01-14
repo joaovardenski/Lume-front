@@ -30,18 +30,25 @@ export function formatDueDate(dateString: string) {
 }
 
 export function normalizeDate(value: string): string | null {
-  // Já está no formato correto
   if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
     return value;
   }
 
-  // ISO / timestamp
   const date = new Date(value);
 
   if (isNaN(date.getTime())) return null;
 
-  return getISODate(date);
+  return getUTCISODate(date);
 }
+
+export function getUTCISODate(date: Date): string {
+  const year = date.getUTCFullYear();
+  const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(date.getUTCDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
 
 export function getISODate(date: Date): string {
   const year = date.getFullYear();
