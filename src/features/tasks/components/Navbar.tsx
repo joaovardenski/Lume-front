@@ -6,6 +6,7 @@ import { NavItem } from "./NavItem";
 import lumeLogo from "../../../assets/lumeTitle.png";
 import { Balloon, Star, CalendarRange, ListTodo, LogOut } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import type { PageType } from "../contexts/HomeContext";
 
 interface NavbarProps {
   isOpen: boolean;
@@ -14,7 +15,7 @@ interface NavbarProps {
 
 interface NavItemData {
   title: string;
-  value: string;
+  value: PageType;
   icon: LucideIcon;
 }
 

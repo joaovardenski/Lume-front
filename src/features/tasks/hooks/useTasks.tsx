@@ -104,10 +104,10 @@ export default function useTasks() {
 
       setTasks((prev) => [response.data, ...prev]);
       setNewTaskTitle("");
-      toast.success("Task criada!");
+      toast.success("Task created!");
     } catch (error) {
       console.log(getApiErrorMessage(error));
-      toast.error("Erro ao criar task");
+      toast.error("Error creating task");
     }
   }
 
@@ -131,11 +131,11 @@ export default function useTasks() {
         description,
         due_date,
       });
-      toast.success("Task atualizada!");
+      toast.success("Task updated!");
     } catch (error) {
       setTasks(previousTasks);
       console.log(getApiErrorMessage(error));
-      toast.error("Erro ao atualizar task");
+      toast.error("Error updating task");
     }
   }
 
@@ -147,11 +147,11 @@ export default function useTasks() {
 
     try {
       await axiosPrivate.delete(`/tasks/${id}`);
-      toast.success("Task removida!");
+      toast.success("Task removed!");
     } catch (error) {
       setTasks(previousTasks);
       console.log(getApiErrorMessage(error));
-      toast.error("Erro ao deletar task");
+      toast.error("Error deleting task");
     }
   }
 

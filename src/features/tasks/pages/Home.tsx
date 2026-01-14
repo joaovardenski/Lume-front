@@ -3,6 +3,9 @@ import HomeContainer from "../components/HomeContainer";
 import TaskSection from "../components/TaskSection";
 import InputAddTask from "../components/InputAddTask";
 import TaskDetailsPanel from "../components/TaskDetailsPainel";
+import { emptyMessages } from "../utils/EmptyMessages";
+import { HomeContext } from "../contexts/HomeContext";
+import { useContext } from "react";
 
 export default function Home() {
   const {
@@ -21,6 +24,10 @@ export default function Home() {
     deleteTask,
   } = useTasks();
 
+  const { active } = useContext(HomeContext);
+  const emptyTodoMessage = emptyMessages[active].todo;
+  const emptyDoneMessage = emptyMessages[active].done;
+
   return (
     <HomeContainer>
       <div className="flex h-[90%] gap-6">
@@ -33,7 +40,7 @@ export default function Home() {
               onToggle={() =>
                 setShowTasks((prev) => ({ ...prev, todo: !prev.todo }))
               }
-              emptyMessage="Não há tarefas"
+              emptyMessage={emptyTodoMessage}
               onToggleCompleted={toggleTaskCompleted}
               onToggleImportant={toggleTaskImportant}
               onSelectTask={setSelectedTask}
@@ -46,7 +53,7 @@ export default function Home() {
               onToggle={() =>
                 setShowTasks((prev) => ({ ...prev, done: !prev.done }))
               }
-              emptyMessage="Nenhuma tarefa concluída"
+              emptyMessage={emptyDoneMessage}
               onToggleCompleted={toggleTaskCompleted}
               onToggleImportant={toggleTaskImportant}
               onSelectTask={setSelectedTask}

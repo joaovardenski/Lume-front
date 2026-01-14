@@ -1,10 +1,11 @@
 import type { LucideIcon } from "lucide-react";
+import type { PageType } from "../contexts/HomeContext";
 
 export interface NavItemProps {
   title: string;
-  value: string;
-  active: string;
-  onClick: (value: string) => void;
+  value: PageType;
+  active: PageType;
+  onClick: (value: PageType) => void;
   icon: LucideIcon;
 }
 

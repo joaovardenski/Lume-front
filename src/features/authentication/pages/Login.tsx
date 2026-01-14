@@ -22,13 +22,13 @@ export default function Login() {
     <AuthContainer
       title="Login"
       navigation={
-        <>
+        <div className="flex flex-col text-center gap-2">
           <LinkAuth
             link="/register"
             text="Don't have an account? Click here to register"
           />
           <LinkAuth link="/forgot-password" text="Forgot your password?" />
-        </>
+        </div>
       }
     >
       <form className="w-full flex flex-col items-center gap-4">

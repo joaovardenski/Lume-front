@@ -22,12 +22,12 @@ export default function Register() {
     <AuthContainer
       title="Register"
       navigation={
-        <>
+        <div className="flex flex-col text-center gap-2">
           <LinkAuth
             link="/"
             text="Already have an account? Click here to sign"
           />
-        </>
+        </div>
       }
     >
       <form className="w-full flex flex-col items-center gap-4">

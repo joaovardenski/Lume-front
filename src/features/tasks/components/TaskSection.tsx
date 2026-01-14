@@ -50,8 +50,11 @@ export default function TaskSection({
           <ChevronDown size={28} />
         </motion.span>
 
-        <h2 className="text-2xl font-semibold group-hover:opacity-80 transition">
-          {title} {tasks.length > 0 && `(${tasks.length})`}
+        <h2 className="text-2xl font-semibold flex items-center gap-1">
+          <span>{title}</span>
+          {tasks.length > 0 && (
+            <span>({tasks.length})</span>
+          )}
         </h2>
       </button>
 
@@ -68,7 +71,6 @@ export default function TaskSection({
             initial="hidden"
             animate="visible"
             exit={{ opacity: 0 }}
-            layout
             className="flex flex-col gap-3 overflow-hidden"
           >
             {tasks.map((task) => (

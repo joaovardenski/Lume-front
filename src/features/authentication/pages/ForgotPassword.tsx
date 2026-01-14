@@ -32,9 +32,9 @@ export default function ForgotPassword() {
     <AuthContainer
       title="Forgot Password"
       navigation={
-        <>
+        <div className="flex flex-col text-center gap-2">
           <LinkAuth link="/" text="Back to Login" />
-        </>
+        </div>
       }
     >
       <form className="w-full flex flex-col items-center gap-4">

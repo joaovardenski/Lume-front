@@ -20,7 +20,7 @@ export default function AuthContainer({
           <img src={LumeTitle} alt="Lume Title" className="w-100" />
         </div>
 
-        <div className="w-full py-5 md:py-20 flex flex-col gap-4 items-center bg-lime-50">
+        <div className="w-full py-5 md:py-20 flex flex-col gap-4 items-center bg-blue-100/20">
           <img src={LumeLogo} alt="Lume Logo" className="w-20 md:hidden" />
 
           <h1 className="text-4xl font-bold text-center text-primary/90">
