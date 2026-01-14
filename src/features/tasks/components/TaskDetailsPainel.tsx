@@ -1,6 +1,6 @@
 import { X, Trash, Calendar, AlignLeft, Clock } from "lucide-react";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type PanInfo } from "framer-motion";
 import type { Task } from "../types/TaskTypes";
 import { formatDateTime } from "../utils/DateUtils";
 
@@ -61,9 +61,10 @@ export default function TaskDetailsPanel({
         drag="y"
         dragConstraints={{ top: 0 }}
         dragElastic={0.2}
-        onDragEnd={(_, info) => {
+        onDragEnd={(_, info: PanInfo) => {
           if (info.offset.y > 120) onClose();
         }}
+
       >
         <div className="w-12 h-1.5 bg-gray-600 rounded-full mx-auto mb-4 md:hidden" />
 
