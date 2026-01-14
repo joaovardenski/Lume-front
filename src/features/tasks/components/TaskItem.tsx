@@ -1,6 +1,5 @@
 import type { Task } from "../types/TaskTypes";
 import { Circle, CircleCheck, StickyNote, Star } from "lucide-react";
-import { motion, type Variants } from "framer-motion";
 import { formatDueDate } from "../utils/DateUtils";
 
 interface TaskItemProps {
@@ -10,32 +9,6 @@ interface TaskItemProps {
   onSelect: (task: Task) => void;
 }
 
-const itemVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 16,
-    scale: 0.98,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      type: "spring",
-      stiffness: 300,
-      damping: 22,
-    },
-  },
-  exit: {
-    opacity: 0,
-    y: -12,
-    scale: 0.97,
-    transition: {
-      duration: 0.15,
-    },
-  },
-};
-
 export default function TaskItem({
   task,
   onToggleCompleted,
@@ -43,13 +16,7 @@ export default function TaskItem({
   onSelect,
 }: TaskItemProps) {
   return (
-    <motion.div
-      variants={itemVariants}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      layout
-      whileTap={{ scale: 0.98 }}
+    <div
       onClick={() => onSelect(task)}
       className="bg-gray-700 h-16 flex gap-3 items-center px-4 py-4 rounded-xl hover:bg-gray-600 transition-colors"
     >
@@ -106,6 +73,6 @@ export default function TaskItem({
           )}
         </button>
       </div>
-    </motion.div>
+    </div>
   );
 }

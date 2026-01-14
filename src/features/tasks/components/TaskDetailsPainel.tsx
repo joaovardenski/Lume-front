@@ -1,6 +1,5 @@
 import { X, Trash } from "lucide-react";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import type { Task } from "../types/TaskTypes";
 import { formatDateTime } from "../utils/DateUtils";
 
@@ -33,16 +32,13 @@ export default function TaskDetailsPanel({
   }
 
   return (
-    <AnimatePresence>
-      <motion.div
+    <>
+      <div
         className="fixed inset-0 bg-black/50 z-40 md:hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
         onClick={onClose}
       />
 
-      <motion.aside
+      <aside
         className={`
           fixed md:static z-50
           bottom-0 md:bottom-auto
@@ -54,18 +50,6 @@ export default function TaskDetailsPanel({
           p-6
           flex flex-col gap-4
         `}
-        initial={{ y: "100%", opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: "100%", opacity: 0 }}
-        transition={{ type: "spring", stiffness: 260, damping: 25 }}
-        drag="y"
-        dragConstraints={{ top: 0 }}
-        dragElastic={0.2}
-        onDragEnd={(_, info) => {
-          if (info.offset.y > 120) {
-            onClose();
-          }
-        }}
       >
         <div className="w-12 h-1.5 bg-gray-500 rounded-full mx-auto mb-2 md:hidden" />
 
@@ -118,7 +102,7 @@ export default function TaskDetailsPanel({
             </button>
           </div>
         </div>
-      </motion.aside>
-    </AnimatePresence>
+      </aside>
+    </>
   );
 }
