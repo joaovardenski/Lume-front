@@ -59,7 +59,7 @@ export default function Navbar({ isOpen, onClose }: NavbarProps) {
       <nav
         className={`
           fixed md:static z-50
-          w-64 h-full
+          w-64 h-dvh
           bg-linear-to-b from-primary to-secondary
           flex flex-col items-center gap-5
           border-r border-gray-500
