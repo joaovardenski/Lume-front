@@ -52,9 +52,7 @@ export default function TaskSection({
 
         <h2 className="text-2xl font-semibold flex items-center gap-1">
           <span>{title}</span>
-          {tasks.length > 0 && (
-            <span>({tasks.length})</span>
-          )}
+          {tasks.length > 0 && <span>({tasks.length})</span>}
         </h2>
       </button>
 

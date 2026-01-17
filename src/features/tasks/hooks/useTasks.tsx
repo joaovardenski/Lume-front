@@ -29,22 +29,37 @@ export default function useTasks() {
   }, []);
 
   const filteredTasks = useMemo(() => {
+    let result = [...tasks];
+
     switch (active) {
       case "important":
-        return tasks.filter((t) => t.important);
+        result = result.filter((t) => t.important);
+        break;
 
       case "scheduled":
-        return tasks.filter((t) => !!t.due_date);
+        result = result.filter((t) => !!t.due_date);
+        break;
 
       case "my day":
-        return tasks.filter((t) => {
+        result = result.filter((t) => {
           if (!t.due_date) return false;
           return normalizeDate(t.due_date) === getTodayISODate();
         });
-
-      default:
-        return tasks;
+        break;
     }
+
+    result.sort((a, b) => {
+      if (!a.due_date && !b.due_date) return 0;
+      if (!a.due_date) return 1;
+      if (!b.due_date) return -1;
+
+      const dateA = new Date(a.due_date).getTime();
+      const dateB = new Date(b.due_date).getTime();
+
+      return dateA - dateB;
+    });
+
+    return result;
   }, [tasks, active]);
 
   const todoTasks = filteredTasks.filter((t) => !t.completed);
@@ -53,10 +68,8 @@ export default function useTasks() {
   async function toggleTaskCompleted(taskId: number) {
     setTasks((prev) =>
       prev.map((task) =>
-        task.id === taskId
-          ? { ...task, completed: !task.completed }
-          : task
-      )
+        task.id === taskId ? { ...task, completed: !task.completed } : task,
+      ),
     );
 
     try {
@@ -64,10 +77,8 @@ export default function useTasks() {
     } catch {
       setTasks((prev) =>
         prev.map((task) =>
-          task.id === taskId
-            ? { ...task, completed: !task.completed }
-            : task
-        )
+          task.id === taskId ? { ...task, completed: !task.completed } : task,
+        ),
       );
     }
   }
@@ -75,10 +86,8 @@ export default function useTasks() {
   async function toggleTaskImportant(taskId: number) {
     setTasks((prev) =>
       prev.map((task) =>
-        task.id === taskId
-          ? { ...task, important: !task.important }
-          : task
-      )
+        task.id === taskId ? { ...task, important: !task.important } : task,
+      ),
     );
 
     try {
@@ -86,10 +95,8 @@ export default function useTasks() {
     } catch {
       setTasks((prev) =>
         prev.map((task) =>
-          task.id === taskId
-            ? { ...task, important: !task.important }
-            : task
-        )
+          task.id === taskId ? { ...task, important: !task.important } : task,
+        ),
       );
     }
   }
@@ -101,7 +108,7 @@ export default function useTasks() {
       const response = await axiosPrivate.post<Task>("/tasks", {
         title: newTaskTitle,
         important: active === "important",
-        date: active === "my day" || active === "scheduled"
+        date: active === "my day" || active === "scheduled",
       });
 
       setTasks((prev) => [response.data, ...prev]);
@@ -117,14 +124,14 @@ export default function useTasks() {
     id: number,
     title: string,
     description: string,
-    due_date: string | null
+    due_date: string | null,
   ) {
     const previousTasks = tasks;
 
     setTasks((prev) =>
       prev.map((t) =>
-        t.id === id ? { ...t, title, description, due_date } : t
-      )
+        t.id === id ? { ...t, title, description, due_date } : t,
+      ),
     );
 
     try {

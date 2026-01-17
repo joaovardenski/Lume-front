@@ -1,10 +1,6 @@
 import { createContext } from "react";
 
-export type PageType =
-  | "my day"
-  | "important"
-  | "scheduled"
-  | "tasks";
+export type PageType = "my day" | "important" | "scheduled" | "tasks";
 
 export interface HomeContextData {
   active: PageType;

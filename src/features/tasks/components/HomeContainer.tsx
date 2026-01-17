@@ -42,7 +42,6 @@ export default function HomeContainer({ children }: HomeContainerProps) {
 
   return (
     <div className="w-screen h-dvh flex bg-secondary">
-
       <Navbar isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
 
       <main className="flex-1 p-6 md:p-10 text-white flex flex-col overflow-hidden">
@@ -56,12 +55,9 @@ export default function HomeContainer({ children }: HomeContainerProps) {
 
           <div className="mx-auto flex items-center gap-2">
             <Icon size={28} />
-            <h1 className="text-xl font-semibold">
-              {pageMeta[active].title}
-            </h1>
+            <h1 className="text-xl font-semibold">{pageMeta[active].title}</h1>
           </div>
         </div>
-
 
         <div className="hidden md:flex items-center gap-4 mb-3">
           <Icon size={40} />

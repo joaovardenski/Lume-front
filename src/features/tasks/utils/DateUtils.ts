@@ -22,7 +22,7 @@ export function formatDueDate(dateString: string) {
   return new Date(
     Number(year),
     Number(month) - 1,
-    Number(day)
+    Number(day),
   ).toLocaleDateString("pt-BR", {
     day: "2-digit",
     month: "short",
@@ -49,7 +49,6 @@ export function getUTCISODate(date: Date): string {
   return `${year}-${month}-${day}`;
 }
 
-
 export function getISODate(date: Date): string {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -73,14 +72,16 @@ export function formatDateTime(timestamp: string) {
 
   if (isNaN(date.getTime())) return "Invalid date";
 
-  return date.toLocaleDateString("pt-BR", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  }) + " " +
-  date.toLocaleTimeString("pt-BR", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+  return (
+    date.toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    }) +
+    " " +
+    date.toLocaleTimeString("pt-BR", {
+      hour: "2-digit",
+      minute: "2-digit",
+    })
+  );
 }
-

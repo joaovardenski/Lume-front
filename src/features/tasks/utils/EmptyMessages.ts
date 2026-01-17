@@ -1,15 +1,11 @@
-type EmptyMessageType =
-  | "todo"
-  | "done";
+type EmptyMessageType = "todo" | "done";
 
-type PageType =
-  | "my day"
-  | "important"
-  | "scheduled"
-  | "tasks";
+type PageType = "my day" | "important" | "scheduled" | "tasks";
 
-export const emptyMessages: Record<PageType, Record<EmptyMessageType, string>> =
-{
+export const emptyMessages: Record<
+  PageType,
+  Record<EmptyMessageType, string>
+> = {
   "my day": {
     todo: "Nenhuma tarefa para hoje",
     done: "Você ainda não concluiu nenhuma tarefa hoje",

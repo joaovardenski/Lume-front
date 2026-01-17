@@ -19,7 +19,7 @@
 
 ## 📌 Sobre o Projeto
 
-O **Lume** é uma aplicação de lista de tarefas inspirada em ferramentas de alta produtividade como *Microsoft To Do* e *Todoist*. O projeto foi desenvolvido com foco em uma interface limpa (Clean UI) e transições fluidas que não interrompem o fluxo de trabalho do usuário.
+O **Lume** é uma aplicação de lista de tarefas inspirada em ferramentas de alta produtividade como _Microsoft To Do_ e _Todoist_. O projeto foi desenvolvido com foco em uma interface limpa (Clean UI) e transições fluidas que não interrompem o fluxo de trabalho do usuário.
 
 > **Importante:** Este repositório contém apenas o código do **Frontend**. Para que a aplicação funcione corretamente, você precisará do [Backend (API)](https://github.com/joaovardenski/Lume-back).
 
@@ -28,21 +28,24 @@ O **Lume** é uma aplicação de lista de tarefas inspirada em ferramentas de al
 ## ✨ Funcionalidades Principais
 
 ### 📝 Gestão de Tarefas
-* **CRUD Completo:** Criar, visualizar, editar e excluir tarefas.
-* **Priorização:** Destaque tarefas críticas marcando-as como **Importantes** (Estrela).
-* **Agendamento:** Definição de prazos para melhor organização.
-* **Conclusão Animada:** Marque tarefas como concluídas com feedback visual imediato.
+
+- **CRUD Completo:** Criar, visualizar, editar e excluir tarefas.
+- **Priorização:** Destaque tarefas críticas marcando-as como **Importantes** (Estrela).
+- **Agendamento:** Definição de prazos para melhor organização.
+- **Conclusão Animada:** Marque tarefas como concluídas com feedback visual imediato.
 
 ### 🔍 Organização Inteligente (Smart Views)
-* 📅 **My Day:** Visão focada nas tarefas do dia.
-* ⭐ **Important:** Filtro para tarefas de alta prioridade.
-* 🗓️ **Scheduled:** Planejamento de tarefas com datas definidas.
-* 📦 **All Tasks:** Visão geral de todo o histórico.
+
+- 📅 **My Day:** Visão focada nas tarefas do dia.
+- ⭐ **Important:** Filtro para tarefas de alta prioridade.
+- 🗓️ **Scheduled:** Planejamento de tarefas com datas definidas.
+- 📦 **All Tasks:** Visão geral de todo o histórico.
 
 ### 🎨 Experiência do Usuário (UX)
-* **Mobile First:** Interface totalmente responsiva e adaptada para dispositivos móveis.
-* **Micro-interações:** Animações de entrada, saída e layout utilizando `Framer Motion`.
-* **Dark Mode:** Design escuro nativo para reduzir o cansaço visual.
+
+- **Mobile First:** Interface totalmente responsiva e adaptada para dispositivos móveis.
+- **Micro-interações:** Animações de entrada, saída e layout utilizando `Framer Motion`.
+- **Dark Mode:** Design escuro nativo para reduzir o cansaço visual.
 
 ---
 
@@ -77,12 +80,14 @@ src/features
 ## ⚙️ Como Rodar o Projeto
 
 ### Pré-requisitos
+
 - Node.js (v18 ou superior).
 - NPM ou Yarn.
 
 ### Passo a passo 1 (usando no servidor)
 
 #### Siga o link para o projeto rodando no servidor
+
 ```text
 https://lume-front.vercel.app/
 ```
@@ -90,23 +95,27 @@ https://lume-front.vercel.app/
 ### Passo a passo 2 (modo desenvolvedor)
 
 #### Clone o repositório
+
 ```text
 git clone https://github.com/joaovardenski/Lume-front.git
 cd Lume-front
 ```
 
 #### Instale as dependências
+
 ```text
 npm install
 ```
 
 #### Configure a API (ajuste a rota da api em src/api/axios.ts)
+
 ```text
 // Exemplo:
 baseURL: 'http://localhost:3000'
 ```
 
 #### Inicie o servidor de desenvolvimento
+
 ```text
 npm run dev
 ```
@@ -114,5 +123,7 @@ npm run dev
 ---
 
 ## 👨‍💻 Autor
+
 **João Victor Vardenski de Andrade** Estudante de Engenharia de Software.
+
 <div align="center"> Desenvolvido com ❤️ por João Victor </div>

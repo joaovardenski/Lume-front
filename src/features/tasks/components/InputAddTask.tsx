@@ -26,11 +26,17 @@ export default function InputAddTask({
         className="w-full bg-gray-700 px-10 py-3 rounded-xl outline-0 hover:bg-gray-600 transition"
       />
 
-      <button onClick={handleAddTask} className="absolute left-3 top-1/2 -translate-y-1/2">
+      <button
+        onClick={handleAddTask}
+        className="absolute left-3 top-1/2 -translate-y-1/2"
+      >
         <Plus size={20} className="text-gray-400" />
       </button>
 
-      <button onClick={handleAddTask} className={`absolute right-3 top-1/2 -translate-y-1/2 md:hidden transition ${!newTaskTitle.trim() && "opacity-0 pointer-events-none"}`}>
+      <button
+        onClick={handleAddTask}
+        className={`absolute right-3 top-1/2 -translate-y-1/2 md:hidden transition ${!newTaskTitle.trim() && "opacity-0 pointer-events-none"}`}
+      >
         <Send size={20} className="text-gray-400" />
       </button>
     </div>

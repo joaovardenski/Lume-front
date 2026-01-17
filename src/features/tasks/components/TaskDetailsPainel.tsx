@@ -64,14 +64,11 @@ export default function TaskDetailsPanel({
         onDragEnd={(_, info: PanInfo) => {
           if (info.offset.y > 120) onClose();
         }}
-
       >
         <div className="w-12 h-1.5 bg-gray-600 rounded-full mx-auto mb-4 md:hidden" />
 
         <header className="flex items-center justify-between mb-6 px-1">
-          <h2 className="text-xl font-semibold text-white">
-            Task details
-          </h2>
+          <h2 className="text-xl font-semibold text-white">Task details</h2>
 
           <button
             onClick={onClose}
@@ -134,9 +131,7 @@ export default function TaskDetailsPanel({
                 focus:ring-2 focus:ring-blue-500
               "
               value={
-                dueDate
-                  ? new Date(dueDate).toISOString().split("T")[0]
-                  : ""
+                dueDate ? new Date(dueDate).toISOString().split("T")[0] : ""
               }
               onChange={(e) => setDueDate(e.target.value)}
             />
@@ -145,29 +140,29 @@ export default function TaskDetailsPanel({
 
         <footer className="mt-6 flex flex-col gap-4">
           <div className="p-6 bg-gray-900 border-t border-gray-800 space-y-4">
-          <div className="flex items-center justify-between text-xs text-gray-500 pb-2">
-            <div className="flex items-center gap-1.5">
-              <Clock size={12} />
-              <span>Created at {formatDateTime(task.created_at)}</span>
+            <div className="flex items-center justify-between text-xs text-gray-500 pb-2">
+              <div className="flex items-center gap-1.5">
+                <Clock size={12} />
+                <span>Created at {formatDateTime(task.created_at)}</span>
+              </div>
+
+              <button
+                onClick={() => onDeleteTask(task.id)}
+                className="flex items-center gap-1.5 text-red-400 hover:text-red-300 transition-colors p-1 hover:cursor-pointer"
+                title="Delete task"
+              >
+                <Trash size={16} />
+                <span className="font-medium">Delete</span>
+              </button>
             </div>
-            
+
             <button
-              onClick={() => onDeleteTask(task.id)}
-              className="flex items-center gap-1.5 text-red-400 hover:text-red-300 transition-colors p-1 hover:cursor-pointer"
-              title="Delete task"
+              onClick={handleSave}
+              className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-blue-900/20 active:scale-[0.98] hover:cursor-pointer"
             >
-              <Trash size={16} />
-              <span className="font-medium">Delete</span>
+              Salve changes
             </button>
           </div>
-
-          <button
-            onClick={handleSave}
-            className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-blue-900/20 active:scale-[0.98] hover:cursor-pointer"
-          >
-            Salve changes
-          </button>
-        </div>
         </footer>
       </motion.aside>
     </AnimatePresence>
