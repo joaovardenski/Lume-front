@@ -3,7 +3,7 @@ import { HomeContext } from "./HomeContext";
 import type { PageType } from "./HomeContext";
 
 export function HomeProvider({ children }: { children: React.ReactNode }) {
-  const [active, setActive] = useState<PageType>("my day");
+  const [active, setActive] = useState<PageType>("tasks");
 
   return (
     <HomeContext.Provider value={{ active, setActive }}>
