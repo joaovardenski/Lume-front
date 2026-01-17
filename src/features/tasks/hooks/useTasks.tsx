@@ -100,6 +100,8 @@ export default function useTasks() {
     try {
       const response = await axiosPrivate.post<Task>("/tasks", {
         title: newTaskTitle,
+        important: active === "important",
+        date: active === "my day" || active === "scheduled"
       });
 
       setTasks((prev) => [response.data, ...prev]);

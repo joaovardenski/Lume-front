@@ -33,18 +33,18 @@ export default function Home() {
       <div className="flex h-[90%] gap-6">
         <div className="flex-1 flex flex-col gap-4">
           <div className="flex-1 flex flex-col gap-4 overflow-y-auto">
-            <TaskSection
-              title="To Do"
-              tasks={todoTasks}
-              isOpen={showTasks.todo}
-              onToggle={() =>
-                setShowTasks((prev) => ({ ...prev, todo: !prev.todo }))
-              }
-              emptyMessage={emptyTodoMessage}
-              onToggleCompleted={toggleTaskCompleted}
-              onToggleImportant={toggleTaskImportant}
-              onSelectTask={setSelectedTask}
-            />
+              <TaskSection
+                title="To Do"
+                tasks={todoTasks}
+                isOpen={showTasks.todo}
+                onToggle={() =>
+                  setShowTasks((prev) => ({ ...prev, todo: !prev.todo }))
+                }
+                emptyMessage={emptyTodoMessage}
+                onToggleCompleted={toggleTaskCompleted}
+                onToggleImportant={toggleTaskImportant}
+                onSelectTask={setSelectedTask}
+              />
 
             <TaskSection
               title="Done"

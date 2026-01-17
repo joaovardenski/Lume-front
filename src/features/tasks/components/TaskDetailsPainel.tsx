@@ -75,7 +75,7 @@ export default function TaskDetailsPanel({
 
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-white transition"
+            className="text-gray-400 hover:text-white transition hover:cursor-pointer"
           >
             <X />
           </button>
@@ -153,7 +153,7 @@ export default function TaskDetailsPanel({
             
             <button
               onClick={() => onDeleteTask(task.id)}
-              className="flex items-center gap-1.5 text-red-400 hover:text-red-300 transition-colors p-1"
+              className="flex items-center gap-1.5 text-red-400 hover:text-red-300 transition-colors p-1 hover:cursor-pointer"
               title="Delete task"
             >
               <Trash size={16} />
@@ -163,7 +163,7 @@ export default function TaskDetailsPanel({
 
           <button
             onClick={handleSave}
-            className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-blue-900/20 active:scale-[0.98]"
+            className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-blue-900/20 active:scale-[0.98] hover:cursor-pointer"
           >
             Salve changes
           </button>

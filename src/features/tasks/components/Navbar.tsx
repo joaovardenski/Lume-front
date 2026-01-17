@@ -91,7 +91,7 @@ export default function Navbar({ isOpen, onClose }: NavbarProps) {
             signOut();
             navigate("/");
           }}
-          className="mt-auto w-full pt-4 flex justify-center gap-2 items-center text-red-400 border-t-2 border-white/80 hover:text-red-500 transition"
+          className="mt-auto w-full py-4 flex justify-center gap-2 items-center text-red-400 border-t-2 border-white/80 hover:text-red-500 transition hover:cursor-pointer"
         >
           <LogOut size={20} />
           <p>Logout</p>
