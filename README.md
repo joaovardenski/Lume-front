@@ -12,6 +12,7 @@
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Framer Motion](https://img.shields.io/badge/Framer-Black?style=for-the-badge&logo=framer&logoColor=blue)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-2496ED.svg?style=for-the-badge&logo=docker&logoColor=white)
 
 </div>
 
@@ -58,6 +59,7 @@ O **Lume** é uma aplicação de lista de tarefas inspirada em ferramentas de al
 - **[Framer Motion](https://www.framer.com/motion/)** - Biblioteca para animações de componentes e layout.
 - **[Lucide Icons](https://lucide.dev/)** - Pacote de ícones minimalistas.
 - **[Axios](https://axios-http.com/)** - Cliente HTTP para integração com a API.
+- **[Docker](https://www.docker.com/)** - Containerização do projeto.
 
 ---
 
@@ -79,12 +81,7 @@ src/features
 
 ## ⚙️ Como Rodar o Projeto
 
-### Pré-requisitos
-
-- Node.js (v18 ou superior).
-- NPM ou Yarn.
-
-### Passo a passo 1 (usando no servidor)
+### Executando no navegador
 
 #### Siga o link para o projeto rodando no servidor
 
@@ -92,32 +89,22 @@ src/features
 https://lume-front.vercel.app/
 ```
 
-### Passo a passo 2 (modo desenvolvedor)
+### 🐳 Executando com Docker
 
-#### Clone o repositório
+#### Pré-requisitos
+- Docker
+- Docker Compose
 
-```text
+Este projeto é totalmente containerizado. Com apenas um comando, a interface front-end sobe pronta para uso.
+(Para o projeto funcionar completamente, precisa rodar o back-end com docker também)
+
+### Passos
+
+```bash
 git clone https://github.com/joaovardenski/Lume-front.git
 cd Lume-front
-```
-
-#### Instale as dependências
-
-```text
-npm install
-```
-
-#### Configure a API (ajuste a rota da api em src/api/axios.ts)
-
-```text
-// Exemplo:
-baseURL: 'http://localhost:3000'
-```
-
-#### Inicie o servidor de desenvolvimento
-
-```text
-npm run dev
+cp .env.example .env
+docker compose up --build
 ```
 
 ---

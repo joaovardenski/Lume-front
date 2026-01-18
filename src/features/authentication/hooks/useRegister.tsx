@@ -3,6 +3,7 @@ import { validateRegisterForm } from "../validators/authForm";
 import { authServices } from "../services/authServices";
 import { useNavigate } from "react-router-dom";
 import { getApiErrorMessage } from "../../shared/utils/getApiErrorMessage";
+import toast from "react-hot-toast";
 
 export default function useRegister() {
   const [formData, setFormData] = useState({
@@ -41,8 +42,10 @@ export default function useRegister() {
         formData.password,
       );
       setErrors({});
-      alert("Registration successful!");
-      navigate("/");
+      toast.success("Registration successful! You can now log in.");
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
     } catch (error) {
       setIsSubmiting(false);
       setApiError(getApiErrorMessage(error));

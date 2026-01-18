@@ -1,7 +1,10 @@
 export function validateName(name: string): string | null {
   if (!name.trim()) return "Name is required";
-  if (!/^[A-Za-z\s]{2,}$/.test(name))
+
+  if (!/^[\p{L}\s]{2,}$/u.test(name)) {
     return "Name must be at least 2 characters and contain only letters";
+  }
+
   return null;
 }
 
