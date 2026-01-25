@@ -35,7 +35,7 @@ export default function TaskItem({
         group flex gap-4 items-center px-4 py-3 rounded-2xl cursor-pointer
         border border-transparent transition-all duration-200 h-18
         ${
-          task.completed
+          task.completed_at
             ? "bg-gray-800/40 opacity-75 hover:bg-gray-800/60"
             : "bg-gray-800 border-gray-700/50 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-900/10"
         }
@@ -48,7 +48,7 @@ export default function TaskItem({
         }}
         className="shrink-0 relative w-6 h-6 flex items-center justify-center transition-transform hover:scale-110"
       >
-        {task.completed ? (
+        {task.completed_at ? (
           <CircleCheck
             size={24}
             className="text-emerald-500 fill-emerald-500/10"
@@ -71,7 +71,7 @@ export default function TaskItem({
         <p
           className={`
           font-medium transition-all truncate
-          ${task.completed ? "text-gray-500 line-through" : "text-gray-100"}
+          ${task.completed_at ? "text-gray-500 line-through" : "text-gray-100"}
         `}
         >
           {task.title}
@@ -89,7 +89,7 @@ export default function TaskItem({
             <div
               className={`
               text-[11px] flex items-center gap-1 font-medium
-              ${task.completed ? "text-gray-600" : "text-blue-400"}
+              ${task.completed_at ? "text-gray-600" : "text-blue-400"}
             `}
             >
               <Calendar size={10} />
