@@ -2,12 +2,7 @@ import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { authServices } from "../services/authServices";
 import { AuthContext } from "./AuthContext";
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-}
+import type { User } from "../types/UserTypes";
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -17,7 +12,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const response = await authServices.me();
       setUser(response.data);
-    } catch {
+    } catch (error) {
+      console.error("Error fetching user:", error);
       setUser(null);
     } finally {
       setLoading(false);
@@ -25,8 +21,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   async function signOut() {
-    await authServices.logout();
-    setUser(null);
+    try {
+      await authServices.logout();
+      setUser(null);
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   }
 
   useEffect(() => {

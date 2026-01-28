@@ -1,3 +1,4 @@
+import { useState } from "react";
 import AuthContainer from "../components/AuthContainer";
 import AuthInput from "../components/AuthInput";
 import SubmitAuthButton from "../components/SubmitAuthButton";
@@ -9,14 +10,14 @@ export default function Register() {
   const {
     formData,
     setFormData,
-    showPassword,
-    setShowPassword,
     errors,
     apiError,
-    setApiError,
-    isSubmiting,
+    isSubmitting,
     handleRegister,
+    clearApiError,
   } = useRegister();
+
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <AuthContainer
@@ -68,16 +69,12 @@ export default function Register() {
         <SubmitAuthButton
           title="Register"
           onClick={handleRegister}
-          isSubmiting={isSubmiting}
+          isSubmitting={isSubmitting}
         />
       </form>
 
       {apiError && (
-        <FeedbackModal
-          isOpen
-          message={apiError}
-          onClose={() => setApiError(null)}
-        />
+        <FeedbackModal isOpen message={apiError} onClose={clearApiError} />
       )}
     </AuthContainer>
   );

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import AuthContainer from "../components/AuthContainer";
 import AuthInput from "../components/AuthInput";
 import SubmitAuthButton from "../components/SubmitAuthButton";
@@ -9,14 +10,14 @@ export default function Login() {
   const {
     formData,
     setFormData,
-    showPassword,
-    setShowPassword,
     errors,
     apiError,
-    setApiError,
-    isSubmiting,
+    isSubmitting,
     handleLogin,
+    clearApiError,
   } = useLogin();
+
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <AuthContainer
@@ -44,7 +45,7 @@ export default function Login() {
 
         <AuthInput
           label="Password"
-          type="password"
+          type={showPassword ? "text" : "password"}
           name="password"
           placeholder="Enter your password"
           value={formData.password}
@@ -59,16 +60,12 @@ export default function Login() {
         <SubmitAuthButton
           title="Login"
           onClick={handleLogin}
-          isSubmiting={isSubmiting}
+          isSubmitting={isSubmitting}
         />
       </form>
 
       {apiError && (
-        <FeedbackModal
-          isOpen
-          message={apiError}
-          onClose={() => setApiError(null)}
-        />
+        <FeedbackModal isOpen message={apiError} onClose={clearApiError} />
       )}
     </AuthContainer>
   );

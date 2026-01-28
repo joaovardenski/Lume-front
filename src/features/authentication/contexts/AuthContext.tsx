@@ -1,10 +1,5 @@
 import { createContext } from "react";
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-}
+import type { User } from "../types/UserTypes";
 
 interface AuthContextData {
   user: User | null;

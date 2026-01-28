@@ -1,45 +1,26 @@
 import { useState } from "react";
+
 import AuthContainer from "../components/AuthContainer";
 import AuthInput from "../components/AuthInput";
 import SubmitAuthButton from "../components/SubmitAuthButton";
 import LinkAuth from "../components/LinkAuth";
-import { validateResetPasswordForm } from "../validators/authForm";
+import FeedbackModal from "../../shared/components/FeedbackModal";
+
+import useRecoverPassword from "../hooks/useRecoverPassword";
 
 export default function RecoverPassword() {
-  const [formData, setFormData] = useState({
-    password: "",
-    confirmPassword: "",
-  });
+  const {
+    formData,
+    setFormData,
+    errors,
+    apiError,
+    isSubmitting,
+    handleRecoverPassword,
+    clearApiError,
+  } = useRecoverPassword();
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [error, setError] = useState<{
-    password?: string;
-    confirmPassword?: string;
-  }>({});
-  const [isSubmiting, setIsSubmiting] = useState(false);
-
-  const handleRecoverPassword = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmiting(true);
-
-    const errors = validateResetPasswordForm(formData);
-    if (Object.keys(errors).length > 0) {
-      setError(errors);
-      return;
-    }
-
-    if (formData.password !== formData.confirmPassword) {
-      setError((prev) => ({
-        ...prev,
-        confirmPassword: "Passwords do not match",
-      }));
-      return;
-    }
-
-    setError({});
-    setIsSubmiting(false);
-    alert("Password recovered successfully!");
-  };
 
   return (
     <AuthContainer
@@ -52,14 +33,14 @@ export default function RecoverPassword() {
     >
       <form className="w-full flex flex-col items-center gap-4">
         <AuthInput
-          label="Password"
-          type="password"
+          label="New Password"
+          type={showPassword ? "text" : "password"}
           name="password"
-          placeholder="Enter your password"
+          placeholder="Enter your new password"
           value={formData.password}
+          error={errors.password}
           showPassword={showPassword}
           setShowPassword={setShowPassword}
-          error={error.password}
           onChange={(e) =>
             setFormData({ ...formData, password: e.target.value })
           }
@@ -67,13 +48,13 @@ export default function RecoverPassword() {
 
         <AuthInput
           label="Confirm Password"
-          type="password"
+          type={showConfirmPassword ? "text" : "password"}
           name="confirmPassword"
-          placeholder="Enter your password again"
+          placeholder="Confirm your password"
           value={formData.confirmPassword}
+          error={errors.confirmPassword}
           showPassword={showConfirmPassword}
           setShowPassword={setShowConfirmPassword}
-          error={error.confirmPassword}
           onChange={(e) =>
             setFormData({ ...formData, confirmPassword: e.target.value })
           }
@@ -82,9 +63,17 @@ export default function RecoverPassword() {
         <SubmitAuthButton
           title="Recover Password"
           onClick={handleRecoverPassword}
-          isSubmiting={isSubmiting}
+          isSubmitting={isSubmitting}
         />
       </form>
+
+      {apiError && (
+        <FeedbackModal
+          isOpen
+          message={apiError}
+          onClose={clearApiError}
+        />
+      )}
     </AuthContainer>
   );
 }

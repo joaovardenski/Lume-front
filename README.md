@@ -92,6 +92,7 @@ https://lume-front.vercel.app/
 ### 🐳 Executando com Docker
 
 #### Pré-requisitos
+
 - Docker
 - Docker Compose
 

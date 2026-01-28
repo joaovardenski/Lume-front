@@ -1,32 +1,20 @@
-import { useState } from "react";
+import useForgotPassword from "../hooks/useForgotPassword";
 import AuthContainer from "../components/AuthContainer";
 import AuthInput from "../components/AuthInput";
 import SubmitAuthButton from "../components/SubmitAuthButton";
 import LinkAuth from "../components/LinkAuth";
-import { validateForgotPasswordForm } from "../validators/authForm";
+import FeedbackModal from "../../shared/components/FeedbackModal";
 
 export default function ForgotPassword() {
-  const [formData, setFormData] = useState({
-    email: "",
-  });
-  const [errors, setErrors] = useState<{ email?: string }>({});
-  const [isSubmiting, setIsSubmiting] = useState(false);
-
-  const handleForgotPassword = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmiting(true);
-
-    const validationErrors = validateForgotPasswordForm(formData);
-
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-
-    setErrors({});
-    setIsSubmiting(false);
-    alert("Password reset link sent to your email!");
-  };
+  const {
+    formData,
+    setFormData,
+    errors,
+    apiError,
+    isSubmitting,
+    handleForgotPassword,
+    clearApiError,
+  } = useForgotPassword();
 
   return (
     <AuthContainer
@@ -45,15 +33,26 @@ export default function ForgotPassword() {
           placeholder="Enter your email"
           value={formData.email}
           error={errors.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, email: e.target.value })
+          }
         />
 
         <SubmitAuthButton
-          title="Forgot Password"
+          title="Send recovery link"
           onClick={handleForgotPassword}
-          isSubmiting={isSubmiting}
+          isSubmitting={isSubmitting}
         />
       </form>
+
+      {apiError && (
+        <FeedbackModal
+          isOpen
+          message={apiError}
+          onClose={clearApiError}
+        />
+      )}
     </AuthContainer>
   );
 }
+

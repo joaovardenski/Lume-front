@@ -66,36 +66,33 @@ export default function useTasks() {
   const completedTasks = filteredTasks.filter((t) => t.completed_at);
 
   async function toggleTaskCompleted(taskId: number) {
-  let previousCompletedAt: string | null = null;
+    let previousCompletedAt: string | null = null;
 
-  setTasks((prev) =>
-    prev.map((task) => {
-      if (task.id !== taskId) return task;
-
-      previousCompletedAt = task.completed_at;
-
-      return {
-        ...task,
-        completed_at: task.completed_at
-          ? null
-          : new Date().toISOString(),
-      };
-    }),
-  );
-
-  try {
-    await axiosPrivate.patch(`/tasks/${taskId}/toggle-completed`);
-  } catch {
     setTasks((prev) =>
-      prev.map((task) =>
-        task.id === taskId
-          ? { ...task, completed_at: previousCompletedAt }
-          : task,
-      ),
-    );
-  }
-}
+      prev.map((task) => {
+        if (task.id !== taskId) return task;
 
+        previousCompletedAt = task.completed_at;
+
+        return {
+          ...task,
+          completed_at: task.completed_at ? null : new Date().toISOString(),
+        };
+      }),
+    );
+
+    try {
+      await axiosPrivate.patch(`/tasks/${taskId}/toggle-completed`);
+    } catch {
+      setTasks((prev) =>
+        prev.map((task) =>
+          task.id === taskId
+            ? { ...task, completed_at: previousCompletedAt }
+            : task,
+        ),
+      );
+    }
+  }
 
   async function toggleTaskImportant(taskId: number) {
     setTasks((prev) =>
