@@ -23,6 +23,20 @@ export const authServices = {
     await axiosPublic.post("/logout");
   },
 
+  forgotPassword: async (email: string) => {
+    await axiosPublic.post("/forgot-password", { email });
+  },
+
+  resetPassword: async (
+    token: string | null,
+    newPassword: string
+  ) => {
+    await axiosPublic.post("/reset-password", {
+      token,
+      newPassword,
+    });
+  },
+
   me: async () => {
     const response = await axiosPrivate.get("/me");
     return response;

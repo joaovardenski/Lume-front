@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 import { useAuthForm } from "./useAuthForm";
 import { validateForgotPasswordForm } from "../validators/authForm";
-// import { authServices } from "../services/authServices";
+import { authServices } from "../services/authServices";
 
 interface ForgotPasswordFormData {
   email: string;
@@ -22,8 +22,10 @@ export default function useForgotPassword() {
     clearApiError,
   } = useAuthForm<ForgotPasswordFormData>();
 
+  const { email } = formData;
+
   async function forgotPassword() {
-    // await authServices.forgotPassword(formData.email);
+    await authServices.forgotPassword(email);
 
     toast.success("Password reset link sent to your email!");
     navigate("/");

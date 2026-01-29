@@ -1,9 +1,9 @@
-//import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
 
 import { useAuthForm } from "./useAuthForm";
 import { validateResetPasswordForm } from "../validators/authForm";
-//import { authServices } from "../services/authServices";
+import { authServices } from "../services/authServices";
 
 interface RecoverPasswordFormData {
   password: string;
@@ -11,9 +11,9 @@ interface RecoverPasswordFormData {
 }
 
 export default function useRecoverPassword() {
-  //const navigate = useNavigate();
-  //const [searchParams] = useSearchParams();
-  //const token = searchParams.get("token");
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token");
 
   const {
     formData,
@@ -24,16 +24,13 @@ export default function useRecoverPassword() {
     handleSubmit,
     clearApiError,
   } = useAuthForm<RecoverPasswordFormData>();
+  
 
   async function recoverPassword() {
-    /*await authServices.resetPassword({
-      token,
-      password: formData.password,
-      confirmPassword: formData.confirmPassword,
-    });*/
+    await authServices.resetPassword(token, formData.confirmPassword);
 
     toast.success("Password updated successfully!");
-    //navigate("/");
+    navigate("/");
   }
 
   function handleRecoverPassword(e: React.FormEvent) {
