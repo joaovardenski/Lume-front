@@ -41,7 +41,7 @@ export default function HomeContainer({ children }: HomeContainerProps) {
   const Icon = activePage.icon;
 
   return (
-    <div className="w-screen h-dvh flex bg-secondary">
+    <div className="w-full h-dvh flex bg-secondary overflow-hidden">
       <Navbar isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
 
       <main className="flex-1 p-6 md:p-10 text-white flex flex-col overflow-hidden">

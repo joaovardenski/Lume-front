@@ -24,6 +24,7 @@ export default function InputAddTask({
         }}
         placeholder="New task"
         className="w-full bg-gray-700 px-10 py-3 rounded-xl outline-0 hover:bg-gray-600 transition"
+        maxLength={150}
       />
 
       <button

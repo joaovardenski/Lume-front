@@ -92,6 +92,7 @@ export default function TaskDetailsPanel({
               "
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              maxLength={150}
             />
           </div>
 
@@ -112,6 +113,7 @@ export default function TaskDetailsPanel({
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Add more details..."
+              maxLength={500}
             />
           </div>
 

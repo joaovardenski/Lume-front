@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "docker": "docker compose down -v && docker compose up --build",
     "format": "prettier --write ."
   },
   "dependencies": {
